@@ -10,10 +10,29 @@
 # The above will handle all files NOT found below
 #
 
+# C#
 *.cs     text diff=csharp
 *.cshtml text diff=html
 *.csx    text diff=csharp
 *.sln    text eol=crlf
+*.slnx   text eol=crlf
+
+# C# project files
+*.csproj   text
+*.props    text
+*.targets  text
+
+# Web files
+*.js       text diff=javascript
+*.jsx      text
+*.ts       text
+*.tsx      text
+*.html     text diff=html
+*.htm      text diff=html
+*.css      text diff=css
+*.scss     text diff=css
+*.sass     text diff=css
+*.less     text diff=css
 
 # Content below from: https://github.com/gitattributes/gitattributes/blob/master/Common.gitattributes
 
@@ -76,6 +95,13 @@
 *.xml      text
 *.yaml     text
 *.yml      text
+
+# Web fonts (binary)
+*.woff     binary
+*.woff2    binary
+*.ttf      binary
+*.eot      binary
+*.otf      binary
 
 # Archives
 *.7z       binary
