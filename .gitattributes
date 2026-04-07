@@ -3,6 +3,12 @@
 ##
 ## Get latest from `dotnet new gitattributes`
 
+# Details per file setting:
+#   text    These files should be normalized (i.e. convert CRLF to LF).
+#   binary  These files are binary and should be left untouched.
+#
+# Note that binary is a macro for -text -diff.
+
 # Auto detect text files and perform LF normalization
 * text=auto
 
@@ -18,9 +24,9 @@
 *.slnx   text eol=crlf
 
 # C# project files
-*.csproj   text
-*.props    text
-*.targets  text
+*.csproj   text eol=crlf
+*.props    text eol=crlf
+*.targets  text eol=crlf
 
 # Web files
 *.js       text diff=javascript
@@ -33,8 +39,16 @@
 *.scss     text diff=css
 *.sass     text diff=css
 *.less     text diff=css
+*.coffee   text
+*.map      text -diff
+.husky/*   text eol=lf
 
-# Content below from: https://github.com/gitattributes/gitattributes/blob/master/Common.gitattributes
+# Docker
+Dockerfile        text
+
+# Basic .gitattributes for sql files
+*.sql linguist-detectable=true
+*.sql linguist-language=sql
 
 # Documents
 *.bibtex   text diff=bibtex
@@ -58,24 +72,76 @@
 *.csv      text eol=crlf
 *.tab      text
 *.tsv      text
+*.psv      text
 *.txt      text
 *.sql      text
 *.epub     diff=astextplain
 
+# Documentations
+AUTHORS           text
+CHANGELOG         text
+CHANGES           text
+CONTRIBUTING      text
+COPYING           text
+copyright         text
+*COPYRIGHT*       text
+INSTALL           text
+license           text
+LICENSE           text
+NEWS              text
+readme            text
+*README*          text
+TODO              text
+
+# Configs
+*.cnf             text
+*.conf            text
+*.config          text
+.editorconfig     text
+.env              text
+.gitattributes    text
+.gitconfig        text
+.htaccess         text
+*.lock            text -diff
+package.json      text eol=lf
+package-lock.json text eol=lf -diff
+pnpm-lock.yaml    text eol=lf -diff
+.prettierrc       text
+yarn.lock         text -diff
+*.toml            text
+*.yaml            text
+*.yml             text
+browserslist      text
+Makefile          text
+makefile          text
+
 # Graphics
-*.png      binary
-*.jpg      binary
-*.jpeg     binary
-*.gif      binary
-*.tif      binary
-*.tiff     binary
-*.ico      binary
-# SVG treated as text by default.
-*.svg      text
+*.ai              binary
+*.bmp             binary
+*.eps             binary
+*.gif             binary
+*.gifv            binary
+*.ico             binary
+*.jng             binary
+*.jp2             binary
+*.jpg             binary
+*.jpeg            binary
+*.jpx             binary
+*.jxr             binary
+*.pdf             binary
+*.png             binary
+*.psb             binary
+*.psd             binary
+# SVG treated as an asset (binary) by default.
+*.svg             text
 # If you want to treat it as binary,
 # use the following line instead.
-# *.svg    binary
-*.eps      binary
+# *.svg           binary
+*.svgz            binary
+*.tif             binary
+*.tiff            binary
+*.wbmp            binary
+*.webp            binary
 
 # Scripts
 # Force Unix scripts to always use lf line endings so that if a repo is accessed
@@ -124,8 +190,43 @@
 *.zip      binary
 *.zst      binary
 
+# Audio
+*.kar             binary
+*.m4a             binary
+*.mid             binary
+*.midi            binary
+*.mp3             binary
+*.ogg             binary
+*.ra              binary
+
+# Video
+*.3gpp            binary
+*.3gp             binary
+*.as              binary
+*.asf             binary
+*.asx             binary
+*.avi             binary
+*.fla             binary
+*.flv             binary
+*.m4v             binary
+*.mng             binary
+*.mov             binary
+*.mp4             binary
+*.mpeg            binary
+*.mpg             binary
+*.ogv             binary
+*.swc             binary
+*.swf             binary
+*.webm            binary
+
 # Text files where line endings should be preserved
 *.patch    -text
+
+# RC files (like .babelrc or .eslintrc)
+*.*rc             text
+
+# Ignore files (like .npmignore or .gitignore)
+*.*ignore         text
 
 # Exclude files from exporting
 .gitattributes export-ignore
